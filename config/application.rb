@@ -22,5 +22,18 @@ module PhoebeBlog
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+ 
+    config.action_mailer.default_url_options = { :host => "localhost:3000" }
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.default :charset => "utf-8"
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = { 
+      :address => "smtp.163.com",
+      :port => 25,
+      :domain => "163.com",
+      :authenticcation => :login,
+      :user_name => "XXXXXXXXXXXX@163.com",
+      :password => "XXXXXXXXXXXXX"
+     }
   end
 end
