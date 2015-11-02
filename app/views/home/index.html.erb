@@ -1,13 +1,5 @@
-<style type="text/css">
-  .person-lev-fan-focus {
-    width:70px;
-    text-align:left;
-    display:inline-block;
-  }
-  
-</style>
 <div class="container">
-  <div class="row">
+	<div class="row">
 	  <div class="col-xs-8 " >
 	    <%= image_tag("home_page/1.png")%>
 	    <span >追随梦想，不论做什么事，请相信你自己 </span>
@@ -27,24 +19,34 @@
 		  </form>
 		  <div style="padding-top:30px">
 
-        <div class="tabbable"> <!-- Only required for left/right tabs -->
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">全部文章</a></li>
-            <li><a href="#tab2" data-toggle="tab">热门博客</a></li>
-            <li><a href="#tab3" data-toggle="tab">最新文章</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              <p>I'm in Section 1.</p>
-            </div>
-            <div class="tab-pane" id="tab2">
-              <p>Howdy, I'm in Section 2.</p>
-            </div>
-            <div class="tab-pane" id="tab3">
-              <p>Howdy, I'm in Section 3.</p>
-            </div>
-          </div>
-        </div>
+	      <div class="tabbable"> <!-- Only required for left/right tabs -->
+	        <ul class="nav nav-tabs">
+	          <li class="active"><a href="#tab1" data-toggle="tab">全部文章</a></li>
+	          <li><a href="#tab2" data-toggle="tab">热门博客</a></li>
+	          <li><a href="#tab3" data-toggle="tab">最新文章</a></li>
+	        </ul>
+	        <div class="tab-content">
+	          <div class="tab-pane active" id="tab1">
+	            <!--文章列表begin-->
+	            <div class="article_title" >
+	              <a href="#">从一个菜鸟到大牛的修炼之道</a>
+	            </div>
+	            <div style="margin:10px 0 0 0;">
+	              <span class="sub_title" style="margin:0px">2015-10-12</span>
+	              <span class="sub_title">关元超</span>
+	              <span class="sub_title">生活</span>
+	            </div>
+	            <hr/>
+	            <!--文章列表end-->
+	          </div>
+	          <div class="tab-pane" id="tab2">
+	            <p>Howdy, I'm in Section 2.</p>
+	          </div>
+	          <div class="tab-pane" id="tab3">
+	            <p>Howdy, I'm in Section 3.</p>
+	          </div>
+	        </div>
+	      </div>
 		  </div>
 	  </div>
 
@@ -65,6 +67,7 @@
 	  	</span>
 	  	</div>
 	  </div>
-  </div>
-</div>	
+	</div>
+</div>
+
 
