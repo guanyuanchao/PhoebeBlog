@@ -32,8 +32,8 @@ module PhoebeBlog
       :port => 25,
       :domain => "163.com",
       :authenticcation => :login,
-      :user_name => "XXXXXXXXXXXXXXXXX@163.com",
-      :password => "XXXXXXXXXXXXXXX"
+      :user_name => "XXXXXXXXXXXXX@163.com",
+      :password => "XXXXXXXXXXX"
      }
   end
 end
