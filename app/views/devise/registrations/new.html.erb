@@ -4,30 +4,32 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email, value: "邮 件" %><br />
+    <%= f.label :email, value: t("email") %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
-
+  
   <div class="field">
-    <%= f.label :name, value: "用户名"%><br />
+    <%= f.label :name, value: t("name")%><br />
     <%= f.text_field :name, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password,value: "密 码" %>
+    <%= f.label :password, value: t("password") %>
     <% if @minimum_password_length %>
-    <em>(密码长度至少<%= @minimum_password_length %>位)</em>
+    <em>
+      (<%= t("password_mix_length")%> <%= @minimum_password_length%> <%=t("password_bit")%>)
+    </em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, value: "确认密码" %><br />
+    <%= f.label :password_confirmation, value: t("password_confirmation") %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "注 册", class: "btn btn-primary" %>
+    <%= f.submit t("sign_up"), class: "btn btn-primary" %>
   </div>
 <% end %>
 
