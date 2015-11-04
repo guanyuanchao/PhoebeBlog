@@ -7,8 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 	<body>
-	  <p	class="notice"><%=	notice	%></p>
-	  <p	class="alert"><%=	alert	%></p>
+	  
 <div class="navbar navbar-default navbar-fixed-top">
  <div class="container">
    <div class="navbar-header">
@@ -18,7 +17,7 @@
     <ul class="nav navbar-nav navbar-left">
       <li class="active"><a href="#">首页</a></li>
       <li><a href="#">相册</a></li>
-      <li><a href="#">文章</a></li>
+      <li><%=link_to "文章", articles_path%></a></li>
       <li><a href="#">状态</a></li>
       <li><a href="#">个人信息</a></li>
     </ul>
@@ -35,7 +34,24 @@
  </div>
 </div>
 
-  <div class="container">
+<% if notice.to_s != "" %>
+<div class="alert alert-info alert-dismissable" style="margin-top:45px;">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+    &times;
+  </button>
+  <%= notice  %>
+</div>
+<% end %>
+<% if alert.to_s != ""%>
+<div class="alert alert-warning alert-dismissable" style="margin-top:45px;">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+    &times;
+  </button>
+  <%= alert %>
+</div>
+<% end %>
+
+  <div class="container" style="margin-top:55px;">
 	  <%= yield %>
 	</div>
 

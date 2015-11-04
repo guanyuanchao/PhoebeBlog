@@ -17,23 +17,28 @@ module PhoebeBlog
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :cn
+
+    # before_action :set_locale
+    # def set_locale
+    #   I18n.locale = params[:locale] ||  I18n.default_locale
+    # end
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
- 
+
     config.action_mailer.default_url_options = { :host => "localhost:3000" }
     config.action_mailer.perform_deliveries = true
     config.action_mailer.default :charset => "utf-8"
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = { 
+    config.action_mailer.smtp_settings = {
       :address => "smtp.163.com",
       :port => 25,
       :domain => "163.com",
       :authenticcation => :login,
-      :user_name => "XXXXXXXXXXXXX@163.com",
-      :password => "XXXXXXXXXXX"
-     }
+      :user_name => "gych373027161@163.com",
+      :password => "XXXXXXXXXXXXXXXXXX"
+    }
   end
 end
