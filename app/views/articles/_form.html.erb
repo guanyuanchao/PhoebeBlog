@@ -12,26 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :article_title %><br>
+    <%= f.label :article_title, :value => t("article_title") %><br>
     <%= f.text_field :article_title %>
   </div>
   <div class="field">
-    <%= f.label :article_type %><br>
-    <%= f.number_field :article_type %>
+    <%= f.label :article_type, :value => t("article_type") %><br>
+    <%=select_tag :article_type, options_for_select(@article_type, @article_type_revert[@article.article_type])%>
   </div>
   <div class="field">
     <%= f.label :article_content %><br>
     <%= f.text_area :article_content %>
   </div>
-  <div class="field">
-    <%= f.label :aritle_read_times %><br>
-    <%= f.number_field :aritle_read_times %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :value=>t("add_article") %>
   </div>
 <% end %>

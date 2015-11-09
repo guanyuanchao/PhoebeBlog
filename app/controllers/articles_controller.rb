@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.paginate(:page  =>  params[:page],  :per_page =>  10)
   end
 
   # GET /articles/1
@@ -15,6 +15,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @article_type = ARTICLE_TYPE
+    @article_type_revert = ARTICLE_TYPE_REVERT
   end
 
   # GET /articles/1/edit
@@ -62,13 +64,13 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:article_title, :article_type, :article_content, :aritle_read_times, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:article_title, :article_type, :article_content, :aritle_read_times, :user_id)
+  end
 end
