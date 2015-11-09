@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 # Use devise for login
 gem	'devise'
+gem 'will_paginate-bootstrap'
 
 # Use pg
 gem 'pg'

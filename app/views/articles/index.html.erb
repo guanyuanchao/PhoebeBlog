@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 well">
     <%= link_to t('new_article'), new_article_path, :class=>"btn btn-primary" %>
     <hr/>
     <% @articles.each do |article| %>
@@ -26,7 +26,8 @@
         </span>
       </div>
     <% end %>
-    <div id="articles_paginator" ></div>
+    <!--<div id="articles_paginator" ></div>-->
+    <%= will_paginate(@articles, renderer:  BootstrapPagination::Rails, previous_label: t("Previous_page"), next_label: t("Next_page")) %>
   </div>
   <div class="col-md-3">
     this is test zone
@@ -40,5 +41,6 @@
   }
   $('#articles_paginator').bootstrapPaginator(options);
 </script>
+
 
 

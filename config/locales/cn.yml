@@ -32,6 +32,14 @@ cn:
   edit_article: "编辑"
   delete_article: "删除"
   delete_article_message: "确定删除？"
+  Previous_page: "上一页"
+  Next_page: "下一页"
+  article_title: "标 题"
+  article_type: "文章类型"
+  add_article: "发 表"
+  emotion: "情感"
+  travel: "游记"
+  life: "生活"
   devise:
     confirmations:
       confirmed: "您的账户已经确认."
