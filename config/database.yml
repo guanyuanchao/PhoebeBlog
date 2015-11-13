@@ -8,11 +8,12 @@ default: &default
   adapter: postgis
   pool: 5
   timeout: 5000
-  encoding: utf8
+  encoding: UTF8
+  template: template0
   host: localhost
-  port: 5433
-  username: guanyuanchao
-  password: guanyuanchao
+  port: 5432
+  username: postgres
+  password: postgres
 
 development:
   <<: *default
