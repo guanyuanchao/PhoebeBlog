@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem	'devise'
 gem 'will_paginate-bootstrap'
 
+gem 'passenger'
+
 # Use pg
 gem 'pg'
 gem 'rgeo'

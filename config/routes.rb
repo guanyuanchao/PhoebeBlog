@@ -16,6 +16,8 @@ Rails.application.routes.draw do
    root 'home#index'
    get  '/users', to: "home#index"
 
+   post 'upload' => 'articles#upload_image'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

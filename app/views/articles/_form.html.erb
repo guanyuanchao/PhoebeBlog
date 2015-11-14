@@ -12,19 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :article_title, :value => t("article_title") %><br>
-    <%= f.text_field :article_title %>
-  </div>
-  <div class="field">
-    <%= f.label :article_type, :value => t("article_type") %><br>
-    <%=select_tag :article_type, options_for_select(@article_type, @article_type_revert[@article.article_type])%>
-  </div>
-  <div class="field">
-    <%= f.label :article_content %><br>
-    <%= f.text_area :article_content %>
+    <%= f.label :article_title, :value => t("article_title") %>
+    <%= f.text_field :article_title, :size => 80%><br/> 
+    <%= f.label :article_type, :value => t("article_type") %>
+    <%=select_tag :article_type, options_for_select(@article_type, @article.article_type), :style => "margin:10px 0px;"%>
+    <%= f.text_area :article_content, placeholder: t("text_area_content")%>
   </div>
   
   <div class="actions">
-    <%= f.submit :value=>t("add_article") %>
+    <%= f.submit :value=>t("add_article"), :class => "btn btn-primary" %>
   </div>
 <% end %>
+<script type="text/javascript">
+  $(function(){
+    var editor = new Simditor({
+      textarea: $('#article_article_content'),
+      toolbar: [
+                'title',
+                'bold',
+                'italic',
+                'underline',
+                'strikethrough',
+                'color',
+                'ol',             
+                'ul',             
+                'blockquote',
+                'code',           
+                'table',
+                'link',
+                'image',
+                'hr',             
+                'indent',
+                'outdent',
+                'alignment'
+              ],
+      upload: {  
+            url : '/upload', //文件上传的接口地址  
+            params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交  
+            fileKey: 'image_data', //服务器端获取文件数据的参数名  
+            connectionCount: 50,  
+            leaveConfirm: '正在上传文件...'  
+        },
+      pasteImage: true
+    });
+  });
+</script>
