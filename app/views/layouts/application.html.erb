@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PhoebeBlog</title>
+  <title>Wanwan</title>
   <%= stylesheet_link_tag 'application', media: "all", 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,13 +11,13 @@
 <div class="navbar navbar-default navbar-fixed-top">
  <div class="container">
    <div class="navbar-header">
-     <%= link_to "Blog", root_path, class: "navbar-brand" %>
+     <%= link_to "Wanwan", root_path, class: "navbar-brand" %>
    </div>
    <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-      <li class="active"><a href="#">首页</a></li>
+      <li><%= link_to "首页", root_path %></li>
       <li><a href="#">相册</a></li>
-      <li><%=link_to "文章", articles_path%></a></li>
+      <li><%=link_to "文章", articles_path%></li>
       <li><a href="#">状态</a></li>
       <li><a href="#">个人信息</a></li>
     </ul>

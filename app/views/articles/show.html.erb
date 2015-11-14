@@ -1,29 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h4><%= @article.article_title %></h4>
+  <span class="sub_title" style="margin:0px">
+    <%= $ARTICLE_TYPE_REVERT[@article.article_type.to_i] %>
+  </span>
+  <span class="sub_title">
+   <%= @article.user.name %>
+  </span>
+  <span class="sub_title">  
+   <%= @article.created_at.strftime("%Y-%m-%d")%>
+  </span>
+  <span style="margin:0px 0px 0px 20px;">
+    <%= link_to t('edit_article'), edit_article_path(@article) %> |
+    <%= link_to t('back_tag'), articles_path %>  
+  </span>
+  <hr/>
+  <p><%= @article.article_content.html_safe %></p>
+  
+  <%= link_to t('edit_article'), edit_article_path(@article) %> |
+  <%= link_to t('back_tag'), articles_path %>  
+  <hr/>
+</div>
 
-<p>
-  <strong>Article title:</strong>
-  <%= @article.article_title %>
-</p>
-
-<p>
-  <strong>Article type:</strong>
-  <%= @article.article_type %>
-</p>
-
-<p>
-  <strong>Article content:</strong>
-  <%= @article.article_content %>
-</p>
-
-<p>
-  <strong>Aritle read times:</strong>
-  <%= @article.aritle_read_times %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @article.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
