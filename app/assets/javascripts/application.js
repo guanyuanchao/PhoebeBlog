@@ -2,3 +2,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require article-title
+//= require ./simditor/module
+//= require ./simditor/hotkeys
+//= require ./simditor/uploader
+//= require ./simditor/simditor
+//= require ./jquery_confirm/jquery-confirm

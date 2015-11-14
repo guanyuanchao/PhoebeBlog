@@ -35,11 +35,21 @@ cn:
   Previous_page: "上一页"
   Next_page: "下一页"
   article_title: "标 题"
-  article_type: "文章类型"
+  article_type: "类 型"
+  article_content: 内 容
   add_article: "发 表"
   emotion: "情感"
   travel: "游记"
   life: "生活"
+  text_area_content: "请输入内容..."
+  atricle_user: "作 者"
+  article_date: "发表日期"
+  return_article_list: "返回列表"
+  give_up_modify: "放弃修改"
+  dialog_tip: "提示"
+  wheather_give_up: "是否放弃修改?"
+  confirm_button: "确 认"
+  cancel_button: "取消"
   devise:
     confirmations:
       confirmed: "您的账户已经确认."
