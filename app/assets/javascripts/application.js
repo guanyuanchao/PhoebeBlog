@@ -7,3 +7,4 @@
 //= require ./simditor/uploader
 //= require ./simditor/simditor
 //= require ./jquery_confirm/jquery-confirm
+//= require ./upload_image/cropbox
