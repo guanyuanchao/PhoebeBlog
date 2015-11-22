@@ -51,8 +51,16 @@
 	  </div>
 
 	  <div class="col-xs-4">
-	  	<%= image_tag("home_page/example.jpg", :class => "img-circle", :width => "100", :height => "100")%>
-	  	<div style="padding-top:15px">
+	    
+		    <img id = "usr_photo" src = '<%= current_user.photo.html_safe%>' align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;" />
+
+	      <!-- 按钮触发模态框 -->
+				<button class="btn btn-primary btn-xs" data-toggle="modal" 
+				   data-target="#myModal" style="position:absolute; left:128; top:0;">
+				   上传头像
+				</button>
+			
+	  	<span style="position:absolute; left:128; bottom:0;">
 	  	|<span class="person-lev-fan-focus">
 	  	  <%= t("focus_tag")%>
 	  	  <a href="#">1</a>
@@ -65,9 +73,109 @@
 	  	  <%= t("fans_tag")%>
 	  	  <a href="#">25</a>
 	  	</span>
-	  	</div>
+	  	</span>
 	  </div>
+
+    <!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+		   aria-labelledby="myModalLabel" aria-hidden="true" >
+		   <div class="modal-dialog">
+		      <div class="modal-content" style="width:970px;">
+		         <div class="modal-header">
+		            <button type="button" class="close" 
+		               data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            </button>
+		            <h5 class="modal-title" id="myModalLabel">
+		               上传头像
+		            </h5>
+		         </div>
+		         <div class="modal-body">
+		            <!--uploa_image begin-->
+		            <div class = "upload_image" style="padding-bottom:20px">
+	                <div class="imageBox">
+						       <div class="thumbBox"></div>
+						        <div class="spinner" style="display: none">Loading...</div>
+			  				  </div>
+								  <div class="action"> 
+								    <div class="new-contentarea tc"> 
+								      <a href="javascript:void(0)" class="upload-img">
+								       <label for="upload-file">上传图像</label>
+								      </a>
+								      <input type="file" class="" name="upload-file" id="upload-file" />
+								    </div>
+								    <input type="button" id="upload_photo" class="Btnsty_peyton" value="确定"/>
+								    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+								    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+								    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+								    
+								  </div>
+
+								  <div class="cropped"></div>
+								  
+                </div><!--upload_image end-->
+		         </div>
+		      </div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+
 	</div>
 </div>
 
+<script type="text/javascript">
+$(window).load(function() {
 
+	var options =
+		{
+			thumbBox: '.thumbBox',
+			spinner: '.spinner',
+			imgSrc: '<%=Rails.root%>/public/alex_example.png'
+		};
+
+		var cropper = $('.imageBox').cropbox(options);
+		$('#upload-file').on('change', function(){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				options.imgSrc = e.target.result;
+				cropper = $('.imageBox').cropbox(options);
+			}
+			reader.readAsDataURL(this.files[0]);
+			this.files = [];
+		});
+
+	$('#btnCrop').on('click', function(){
+		var img = cropper.getDataURL();
+		$('.cropped').html('');
+		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
+		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+	});
+
+	$('#btnZoomIn').on('click', function(){
+		cropper.zoomIn();
+	});
+
+	$('#btnZoomOut').on('click', function(){
+		cropper.zoomOut();
+	});
+
+	$('#upload_photo').on('click', function(){
+
+	  $.ajax({ url: "/home/upload_photo", 
+	    	     type: 'POST',
+	    	     dataType: 'json',
+	    	     data: {
+	    	       photo_data: cropper.getDataURL()
+	    	     }, 
+	    	     success: function(data){
+	    	     	alert("上传成功！");
+	            $('#usr_photo').attr('src', cropper.getDataURL());
+	           },
+	           error:function(data){
+	            alert("上传失败，请重试！");
+	           }
+	  });
+    $('#myModal').modal('hide'); //隐藏弹出的模态框
+	});
+
+});
+</script>
