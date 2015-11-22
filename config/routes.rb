@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
    post 'upload' => 'articles#upload_image'
 
+   post 'home/upload_photo' #上传头像的路径,等于 post 'upload_photo' => 'home#upload_photo'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
