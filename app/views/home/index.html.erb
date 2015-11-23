@@ -27,16 +27,18 @@
 	        </ul>
 	        <div class="tab-content">
 	          <div class="tab-pane active" id="tab1">
+	          <% current_user.articles. each do |article|%>
 	            <!--文章列表begin-->
 	            <div class="article_title" >
-	              <a href="#">从一个菜鸟到大牛的修炼之道</a>
+	              <a href="/articles/<%=article.id%>"><%= article.article_title%></a>
 	            </div>
 	            <div style="margin:10px 0 0 0;">
-	              <span class="sub_title" style="margin:0px">2015-10-12</span>
-	              <span class="sub_title">关元超</span>
-	              <span class="sub_title">生活</span>
+	              <span class="sub_title" style="margin:0px"><%= article.created_at.strftime("%Y-%m-%d")%></span>
+	              <span class="sub_title"><%= current_user.name%></span>
+	              <span class="sub_title"><%= $ARTICLE_TYPE_REVERT[article.article_type]%></span>
 	            </div>
 	            <hr/>
+	            <% end %>
 	            <!--文章列表end-->
 	          </div>
 	          <div class="tab-pane" id="tab2">
@@ -128,7 +130,7 @@ $(window).load(function() {
 		{
 			thumbBox: '.thumbBox',
 			spinner: '.spinner',
-			imgSrc: '<%=Rails.root%>/public/alex_example.png'
+			imgSrc: '/alex_example.png'
 		};
 
 		var cropper = $('.imageBox').cropbox(options);
