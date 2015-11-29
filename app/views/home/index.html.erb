@@ -53,14 +53,13 @@
 	  </div>
 
 	  <div class="col-xs-4">
-	    
-		    <img id = "usr_photo" src = '<%= current_user.photo%>' align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;" />
+		    <img id = "usr_photo" src = '<%= current_user.photo%>' align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;cursor:pointer" />
 
-	      <!-- 按钮触发模态框 -->
+	      <!-- 按钮触发模态框 
 				<button class="btn btn-primary btn-xs" data-toggle="modal" 
-				   data-target="#myModal" style="position:absolute; left:128; top:0;">
+				    data-target="#myModal" style="position:absolute; left:128; top:0;">
 				   上传头像
-				</button>
+				</button>-->
 			
 	  	<span style="position:absolute; left:128; bottom:0;">
 	  	|<span class="person-lev-fan-focus">
@@ -127,22 +126,27 @@
 $(window).load(function() {
 
 	var options =
-		{
-			thumbBox: '.thumbBox',
-			spinner: '.spinner',
-			imgSrc: '/alex_example.png'
-		};
+	{
+		thumbBox: '.thumbBox',
+		spinner: '.spinner',
+		imgSrc: '/alex_example.png'
+	};
 
-		var cropper = $('.imageBox').cropbox(options);
-		$('#upload-file').on('change', function(){
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				options.imgSrc = e.target.result;
-				cropper = $('.imageBox').cropbox(options);
-			}
-			reader.readAsDataURL(this.files[0]);
-			this.files = [];
-		});
+	var cropper = $('.imageBox').cropbox(options);
+	$('#upload-file').on('change', function(){
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			options.imgSrc = e.target.result;
+			cropper = $('.imageBox').cropbox(options);
+		}
+		reader.readAsDataURL(this.files[0]);
+		this.files = [];
+	});
+  
+  // 打开模态框
+	$('#usr_photo').on('click', function(){
+    $('#myModal').modal('show');
+	});
 
 	$('#btnCrop').on('click', function(){
 		var img = cropper.getDataURL();
