@@ -1,3 +1,4 @@
+<%= javascript_include_tag "home_article" %>
 <div class="container">
 	<div class="row">
 	  <div class="col-xs-8 " >
@@ -21,25 +22,15 @@
 
 	      <div class="tabbable"> <!-- Only required for left/right tabs -->
 	        <ul class="nav nav-tabs">
-	          <li class="active"><a href="#tab1" data-toggle="tab"><%=t("all_articles")%></a></li>
+	          <li class="active"><a href="#article_tab" data-toggle="tab"><%=t("all_articles")%></a></li>
 	          <li><a href="#tab2" data-toggle="tab"><%= t("hot_blogs")%></a></li>
 	          <li><a href="#tab3" data-toggle="tab"><%= t("new_articles")%></a></li>
 	        </ul>
 	        <div class="tab-content">
-	          <div class="tab-pane active" id="tab1">
-	          <% current_user.articles. each do |article|%>
-	            <!--文章列表begin-->
-	            <div class="article_title" >
-	              <a href="/articles/<%=article.id%>"><%= article.article_title%></a>
+	          <div class="tab-pane active" id="article_tab">
+	            <div id="article_page">
+	              <%=render partial: "shared/page" %>
 	            </div>
-	            <div style="margin:10px 0 0 0;">
-	              <span class="sub_title" style="margin:0px"><%= article.created_at.strftime("%Y-%m-%d")%></span>
-	              <span class="sub_title"><%= current_user.name%></span>
-	              <span class="sub_title"><%= $ARTICLE_TYPE_REVERT[article.article_type]%></span>
-	            </div>
-	            <hr/>
-	            <% end %>
-	            <!--文章列表end-->
 	          </div>
 	          <div class="tab-pane" id="tab2">
 	            <p>Howdy, I'm in Section 2.</p>

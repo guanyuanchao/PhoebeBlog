@@ -1,0 +1,14 @@
+<% @articles.each do |article| %>
+   <!--文章列表begin-->
+    <div class="article_title" >
+      <a href="/articles/<%=article.id%>"><%= article.article_title%></a>
+    </div>
+    <div style="margin:10px 0 0 0;">
+      <span class="sub_title" style="margin:0px"><%= article.created_at.strftime("%Y-%m-%d")%></span>
+      <span class="sub_title"><%= current_user.name%></span>
+      <span class="sub_title"><%= $ARTICLE_TYPE_REVERT[article.article_type]%></span>
+    </div>
+    <hr/>
+    <!--文章列表end-->
+<% end %>
+<%= will_paginate @articles, renderer:  BootstrapPagination::Rails, previous_label: t("Previous_page"), next_label: t("Next_page")%>
