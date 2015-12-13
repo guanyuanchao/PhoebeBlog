@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   	2 => I18n.t("travel"),
   	3 => I18n.t("life")
   }
+
+  def redis
+    $redis
+  end
 end

@@ -11,6 +11,13 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @photo = redis.get(current_user.id.to_s)
+    if @photo.nil?
+      @photo = current_user.photo
+      redis.set(current_user.id.to_s, @photo)
+    end
+
+    @comment = Comment.where("article_id=#{params["id"].to_i}")
   end
 
   # GET /articles/new
@@ -88,10 +95,27 @@ class ArticlesController < ApplicationController
     render json: {:success=>success, :msg=>msg, :file_path=>"/#{file_real_path}" }
   end
 
+  def submit_comment
+    success = false
+    msg = "comment_save_false"
+    comment = init_comment
+    comment.content = params["comment_content"]
+    comment.article_id = params["article_id"]
+    if comment.save
+      success = true
+      msg = "comment_save_true"
+    end
+    render json: {:success=>success, :msg=>msg}
+  end
+
   private
   # def content_type
   #   split(".")[1].to_S
   # end
+  def init_comment
+    Comment.new
+  end
+
   def save_file(file)
     extname = file.content_type.match(/^image\/(gif|png|jpg|jpeg){1}$/).to_a[1]
     filename = File.basename(file.original_filename,'.*')

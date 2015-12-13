@@ -50,6 +50,10 @@ cn:
   wheather_give_up: "是否放弃修改?"
   confirm_button: "确 认"
   cancel_button: "取消"
+  comment: "评论"
+  comment_pre: "预览"
+  alias_name: "昵称"
+  submit_comment: "提交评论"
   devise:
     confirmations:
       confirmed: "您的账户已经确认."
