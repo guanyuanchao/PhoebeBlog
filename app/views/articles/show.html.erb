@@ -1,3 +1,8 @@
+<style type="text/css">
+  .simditor-body{
+    min-height: 100px;
+  }
+</style>
 <div class="container">
   <h4><%= @article.article_title %></h4>
   <span class="sub_title" style="margin:0px">
@@ -15,9 +20,97 @@
   </span>
   <hr/>
   <p><%= @article.article_content.html_safe %></p>
-  
-  <%= link_to t('edit_article'), edit_article_path(@article) %> |
-  <%= link_to t('back_tag'), articles_path %>  
   <hr/>
+  <div id="all_comments">
+  	<%@comment.each do |comment|%>
+	  <div class="row" style="border:1px solid #98AFC7;">
+	    <div class="col-md-2" style="border-right:1px solid #98AFC7;">
+	      <img id = "usr_photo" src = '<%= comment.article.user.photo%>' align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;cursor:pointer" />
+	      <div>
+	        <%= t('alias_name')%>:<span style="margin-left:5px;"><%= link_to comment.article.user.name%></span>
+	      </div>
+	    </div>
+	    <div class="col-md-10" >
+	    	<%= comment.content.html_safe%>
+	    </div>
+	  </div>
+	 <% end %>
+  </div>
+ 
+  
+  <div class="row" style="border:1px solid #98AFC7;margin-top:20px; ">
+    <div class="col-md-2" >
+      <img id = "usr_photo" src = '<%= @photo%>' align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;cursor:pointer" />
+      <div>
+        <%= t('alias_name')%>:<span style="margin-left:5px;"><%= link_to current_user.name%></span>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#article_comment" data-toggle="tab"><%=t("comment")%></a>
+          </li>
+          <li>
+            <a href="#article_comment_preview" id="pre_content" data-toggle="tab"><%= t("comment_pre")%></a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="article_comment">
+            <div id="article_page">
+              <textarea id="comment_content" ></textarea>
+              <input type="button" id="save_comment" class="btn btn-info" value="<%= t("submit_comment")%>"/>
+            </div>
+          </div>
+          <div class="tab-pane" id="article_comment_preview">
+            <p>dddd</p>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
 </div>
 
+<script type="text/javascript">
+$(function(){
+    var editor = new Simditor({
+      textarea: $('#comment_content'),
+      toolbar: [
+                'title', 'bold', 'italic', 'underline', 'strikethrough',
+                'color', 'ol', 'ul', 'blockquote', 'code', 'table',
+                'link', 'image', 'hr', 'indent', 'outdent', 'alignment'
+              ],
+      upload: {  
+            url : '/upload', //文件上传的接口地址  
+            params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交  
+            fileKey: 'image_data', //服务器端获取文件数据的参数名  
+            connectionCount: 50,  
+            leaveConfirm: '正在上传文件...'  
+        },
+      pasteImage: true
+    });
+
+    $("#save_comment").on('click', function(){
+      $.ajax({ url: "/articles/submit_comment", 
+             type: 'POST',
+             dataType: 'json',
+             data: {
+               comment_content: $("#comment_content").val(),
+               article_id: "<%=@article.id  if @article%>"
+             }, 
+             success: function(data){
+              // alert("上传成功！");
+               location.reload();
+              //$('#usr_photo').attr('src', cropper.getDataURL());
+             },
+             error:function(data){
+              alert("评论失败，请重试！");
+             }
+      });
+      //alert($("#comment_content").val());
+    });
+    $("#pre_content").on('click', function(){
+    	$("#article_comment_preview").html($("#comment_content").val());
+    })
+  });
+</script>
